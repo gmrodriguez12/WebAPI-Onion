@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Ardalis.Specification" Version="6.0.1" />
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="FluentValidation" Version="11.0.1" />
@@ -16,10 +17,12 @@
 
   <ItemGroup>
     <Folder Include="DTOs\" />
-    <Folder Include="Features\" />
+    <Folder Include="Features\Products\Commands\DeleteProductCommand\" />
+    <Folder Include="Features\Products\Commands\UpdateProductCommand\" />
+    <Folder Include="Features\Products\Queries\GetAllProductsQuery\" />
+    <Folder Include="Features\Products\Queries\GetProductByIdQuery\" />
     <Folder Include="Filters\" />
     <Folder Include="Mappings\" />
-    <Folder Include="Wrappers\" />
   </ItemGroup>
 
 </Project>

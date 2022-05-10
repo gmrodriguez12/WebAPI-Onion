@@ -11,11 +11,11 @@ namespace Persistence.Repository
 {
     public class AdventureRepositoryAsync<T> : RepositoryBase<T>, IRepositoryAsync<T> where T : class
     {
-        private readonly AdventureWorkDbContext dbContext;
+        private readonly AdventureWorkDbContext _dbContext;
         
         public AdventureRepositoryAsync(AdventureWorkDbContext dbContext) : base(dbContext)
         {
-            this.dbContext = dbContext;
+            this._dbContext = dbContext;
         }
     }
 }

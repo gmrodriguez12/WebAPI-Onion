@@ -1,6 +1,8 @@
 using Application;
+using Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
+ConfigurationManager configuration = builder.Configuration;
 
 // Add services to the container.
 
@@ -9,6 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddApplicationLayer();
+builder.Services.AddPersistenceInfra(configuration);
 
 var app = builder.Build();
 

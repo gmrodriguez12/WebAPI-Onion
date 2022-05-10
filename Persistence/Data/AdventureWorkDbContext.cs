@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Application.Interfaces;
+using Domain.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -11,10 +13,31 @@ namespace Persistence.Data
         {
         }
 
-        public AdventureWorkDbContext(DbContextOptions<AdventureWorkDbContext> options)
+        private readonly IDateTimeService _dateTime;
+
+        public AdventureWorkDbContext(DbContextOptions<AdventureWorkDbContext> options, IDateTimeService dateTime)
             : base(options)
         {
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            _dateTime = dateTime;
         }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+        {
+            foreach (var item in ChangeTracker.Entries<AuditoryEntity>())
+            {
+                switch (item.State)
+                {
+                    case EntityState.Added:
+                    case EntityState.Modified:
+                        item.Entity.ModifiedDate = _dateTime.NowUTC;
+                        break;
+                }
+            }
+
+            return base.SaveChangesAsync(cancellationToken);
+        }
+
 
         public virtual DbSet<Address> Addresses { get; set; } = null!;
         public virtual DbSet<AddressType> AddressTypes { get; set; } = null!;

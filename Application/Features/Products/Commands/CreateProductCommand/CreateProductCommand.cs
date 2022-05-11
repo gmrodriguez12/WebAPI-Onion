@@ -34,19 +34,21 @@ namespace Application.Features.Products.Commands.CreateProductCommand
 
     public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Response<int>>
     {
-        private readonly IRepositoryAsync<Product> repositoryAsync;
+        private readonly IRepositoryAsync<Product> _repository;
         private readonly IMapper _mapper;
 
-        public CreateProductCommandHandler(IRepositoryAsync<Product> repositoryAsync, IMapper mapper)
+        public CreateProductCommandHandler(IRepositoryAsync<Product> repository, IMapper mapper)
         {
-            this.repositoryAsync = repositoryAsync;
+            this._repository = repository;
             _mapper = mapper;
         }
 
         public async Task<Response<int>> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
             var product = _mapper.Map<Product>(request);
-            throw new NotImplementedException();
+            var data = await _repository.AddAsync(product);
+
+            return new Response<int>(data.Id);
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Application.Interfaces;
 using Domain.Common;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -31,13 +32,13 @@ namespace Persistence.Data
                     case EntityState.Added:
                     case EntityState.Modified:
                         item.Entity.ModifiedDate = _dateTime.NowUTC;
+                        item.Entity.rowGuid = Guid.NewGuid();
                         break;
                 }
             }
 
             return base.SaveChangesAsync(cancellationToken);
         }
-
 
         public virtual DbSet<Address> Addresses { get; set; } = null!;
         public virtual DbSet<AddressType> AddressTypes { get; set; } = null!;
@@ -132,16 +133,6 @@ namespace Persistence.Data
         // Unable to generate entity type for table 'Production.Document' since its primary key could not be scaffolded. Please see the warning messages.
         // Unable to generate entity type for table 'Production.ProductDocument' since its primary key could not be scaffolded. Please see the warning messages.
 
-
-
-//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//        {
-//            if (!optionsBuilder.IsConfigured)
-//            {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-//                optionsBuilder.UseSqlServer("Data Source=DESKTOP-CMM6F5S;Initial Catalog=AdventureWorks;Integrated Security=True");
-//            }
-//        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

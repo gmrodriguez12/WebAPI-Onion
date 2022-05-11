@@ -13,23 +13,29 @@ namespace Application.Features.Products.Commands.CreateProductCommand
 {
     public class CreateProductCommand : IRequest<Response<int>>
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string ProductNumber { get; set; }
+        public int ProductId { get; set; }
+        public string Name { get; set; } = null!;
+        public string ProductNumber { get; set; } = null!;
         public bool? MakeFlag { get; set; }
-        public bool? FinishGoodFlag { get; set; }
-        public string Color { get; set; }
+        public bool? FinishedGoodsFlag { get; set; }
+        public string? Color { get; set; }
         public short SafetyStockLevel { get; set; }
         public short ReorderPoint { get; set; }
         public decimal StandardCost { get; set; }
         public decimal ListPrice { get; set; }
+        public string? Size { get; set; }
+        public string? SizeUnitMeasureCode { get; set; }
+        public string? WeightUnitMeasureCode { get; set; }
+        public decimal? Weight { get; set; }
         public int DaysToManufacture { get; set; }
-        public int IdVendor { get; set; }
-        public string VendorName { get; set; }
-        public int IdSubCategory { get; set; }
-        public string SubCategoryName { get; set; }
-        public int IdCategory { get; set; }
-        public string CategoryName { get; set; }
+        public string? ProductLine { get; set; }
+        public string? Class { get; set; }
+        public string? Style { get; set; }
+        public int? ProductSubcategoryId { get; set; }
+        public int? ProductModelId { get; set; }
+        public DateTime SellStartDate { get; set; }
+        public Guid Rowguid { get; set; }
+        public DateTime ModifiedDate { get; set; }
     }
 
     public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Response<int>>
@@ -48,7 +54,7 @@ namespace Application.Features.Products.Commands.CreateProductCommand
             var product = _mapper.Map<Product>(request);
             var data = await _repository.AddAsync(product);
 
-            return new Response<int>(data.Id);
+            return new Response<int>(data.ProductId);
         }
     }
 }

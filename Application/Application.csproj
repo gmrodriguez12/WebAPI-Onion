@@ -21,7 +21,6 @@
     <Folder Include="Features\Products\Commands\UpdateProductCommand\" />
     <Folder Include="Features\Products\Queries\GetAllProductsQuery\" />
     <Folder Include="Features\Products\Queries\GetProductByIdQuery\" />
-    <Folder Include="Filters\" />
   </ItemGroup>
 
   <ItemGroup>

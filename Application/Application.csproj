@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -22,7 +22,10 @@
     <Folder Include="Features\Products\Queries\GetAllProductsQuery\" />
     <Folder Include="Features\Products\Queries\GetProductByIdQuery\" />
     <Folder Include="Filters\" />
-    <Folder Include="Mappings\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
 </Project>

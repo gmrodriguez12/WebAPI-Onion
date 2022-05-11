@@ -1,4 +1,7 @@
-﻿using Application.Wrappers;
+﻿using Application.Interfaces;
+using Application.Wrappers;
+using AutoMapper;
+using Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -31,8 +34,18 @@ namespace Application.Features.Products.Commands.CreateProductCommand
 
     public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Response<int>>
     {
+        private readonly IRepositoryAsync<Product> repositoryAsync;
+        private readonly IMapper _mapper;
+
+        public CreateProductCommandHandler(IRepositoryAsync<Product> repositoryAsync, IMapper mapper)
+        {
+            this.repositoryAsync = repositoryAsync;
+            _mapper = mapper;
+        }
+
         public async Task<Response<int>> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
+            var product = _mapper.Map<Product>(request);
             throw new NotImplementedException();
         }
     }

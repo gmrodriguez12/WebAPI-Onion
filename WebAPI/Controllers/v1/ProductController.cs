@@ -1,6 +1,7 @@
 ﻿using Application.Features.Products.Commands.CreateProductCommand;
 using Application.Features.Products.Commands.DeleteProductCommand;
 using Application.Features.Products.Commands.UpdateProductCommand;
+using Application.Features.Products.Queries.GetProductByIdQuery;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,12 +32,14 @@ namespace WebAPI.Controllers.v1
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
-            DeleteProductCommand product = new DeleteProductCommand()
-            {
-                 ProductId = id
-            };
+            return Ok(await Mediator.Send(new DeleteProductCommand { ProductId = id}));
+        }
 
-            return Ok(await Mediator.Send(product));
+        //GET api/<controller>/1
+        [HttpGet]
+        public async Task<IActionResult> Get(int id)
+        {
+            return Ok(await Mediator.Send(new GetProductByIdQuery { ProductId = id }));
         }
     }
 }

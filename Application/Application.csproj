@@ -16,9 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\" />
     <Folder Include="Features\Products\Queries\GetAllProductsQuery\" />
-    <Folder Include="Features\Products\Queries\GetProductByIdQuery\" />
   </ItemGroup>
 
   <ItemGroup>

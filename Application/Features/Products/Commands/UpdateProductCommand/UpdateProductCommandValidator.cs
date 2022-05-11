@@ -1,13 +1,21 @@
 ﻿using FluentValidation;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Application.Features.Products.Commands.CreateProductCommand
+namespace Application.Features.Products.Commands.UpdateProductCommand
 {
-    public class CreateProductCommandValidator : AbstractValidator<CreateProductCommand>
+    public class UpdateProductCommandValidator : AbstractValidator<UpdateProductCommand>
     {
-        public CreateProductCommandValidator()
+        public UpdateProductCommandValidator()
         {
+            RuleFor(p => p.ProductId)
+                .NotEmpty().WithMessage("{PropertyName} is required");
+
             RuleFor(p => p.Name).NotEmpty().WithMessage("{PropertyName} is required")
-                                .MaximumLength(50).WithMessage("{PropertyName} maximum length is {MaxLength}");
+                    .MaximumLength(50).WithMessage("{PropertyName} maximum length is {MaxLength}");
 
             RuleFor(p => p.ProductNumber).NotEmpty().WithMessage("{PropertyName} is required")
                                .MaximumLength(25).WithMessage("{PropertyName} maximum length is {MaxLength}");

@@ -1,6 +1,7 @@
 using Application;
 using Persistence;
 using WebAPI.Extensions;
+using Shared;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
@@ -8,17 +9,16 @@ ConfigurationManager configuration = builder.Configuration;
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddApplicationLayer();
+builder.Services.AddPersistenceInfra(configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddApiVersioningExtension();
+builder.Services.AddSharedInfra();
 
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "WebAPI-Onion", Version = "v1" });
 });
-
-builder.Services.AddApplicationLayer();
-builder.Services.AddPersistenceInfra(configuration);
 
 var app = builder.Build();
 

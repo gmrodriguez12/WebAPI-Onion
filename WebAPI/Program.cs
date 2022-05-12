@@ -3,6 +3,7 @@ using Persistence;
 using WebAPI.Extensions;
 using Shared;
 
+var customSpecificOrigin = "customSpecificOrigin";
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
 
@@ -20,6 +21,18 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "WebAPI-Onion", Version = "v1" });
 });
 
+//Enable CORS
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: customSpecificOrigin, builder =>
+    {
+        builder.WithOrigins("http://localhost:4200")
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -31,7 +44,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors(customSpecificOrigin);
+
 app.UseAuthorization();
+
 app.UseErrorHandlingMiddleware();
 
 app.MapControllers();

@@ -16,7 +16,7 @@ namespace Application.Specifications
 
             Query.Skip(skip).Take(pageSize);
 
-            if(subcategoryId.HasValue)
+            if(subcategoryId.HasValue && subcategoryId.Value > 0)
             {
                 Query.Where(x => x.ProductSubcategoryId.Equals(subcategoryId));
             }    

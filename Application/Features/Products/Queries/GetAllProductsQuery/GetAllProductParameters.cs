@@ -16,13 +16,7 @@ namespace Application.Features.Products.Queries.GetAllProductsQuery
         public GetAllProductParameters()
         {
             this.PageNumber = this.PageNumber < 1 ? 1 : this.PageNumber;
+            this.PageSize = this.PageSize == 0 ? 30 : this.PageSize;
         }
-
-        //public GetAllProductParameters(int pageNumber, int pageSize, sub)
-        //{
-        //    this.PageNumber = pageNumber < 1 ? 1 : pageNumber;
-        //    this.PageSize = pageSize;
-        //}
-
     }
 }

@@ -1,7 +1,5 @@
-﻿using Application.Exceptions;
-using Application.Interfaces;
+﻿using Application.Interfaces;
 using Application.Wrappers;
-using AutoMapper;
 using Domain.Entities;
 using MediatR;
 
@@ -12,11 +10,11 @@ namespace Application.Features.Products.Commands.DeleteProductCommand
         public int ProductId { get; set; }
     }
 
-    public class UpdateProductCommandHandler : IRequestHandler<DeleteProductCommand, Response<int>>
+    public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommand, Response<int>>
     {
         private readonly IRepositoryAsync<Product> _repository;
 
-        public UpdateProductCommandHandler(IRepositoryAsync<Product> repository)
+        public DeleteProductCommandHandler(IRepositoryAsync<Product> repository)
         {
             this._repository = repository;
         }

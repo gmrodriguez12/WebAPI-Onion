@@ -30,7 +30,7 @@ namespace WebAPI.Controllers.v1
         }
 
         //DELETE api/<controller>
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             return Ok(await Mediator.Send(new DeleteProductCommand { ProductId = id }));

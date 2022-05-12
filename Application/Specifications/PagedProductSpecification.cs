@@ -19,7 +19,9 @@ namespace Application.Specifications
             if(subcategoryId.HasValue && subcategoryId.Value > 0)
             {
                 Query.Where(x => x.ProductSubcategoryId.Equals(subcategoryId));
-            }    
+            }
+
+            Query.OrderByDescending(x => x.ProductId);
         }
     }
 }

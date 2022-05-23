@@ -39,3 +39,8 @@ I included this pattern to handle all communication with the database through a 
 In particular, I use the Nuget Ardalis Specification.
 
 I included the implementation of the MediatR pattern, which is a coordinator in charge of communication between layers. In this case, I use it for calls from the API to the Application.
+
+<h2>Adventure Work Database</h2>
+
+https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorks2019.bak
+

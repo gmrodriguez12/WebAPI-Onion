@@ -1,4 +1,6 @@
-﻿using FluentValidation;
+﻿using System.Runtime.Serialization;
+using System.Net.Security;
+using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -25,6 +27,9 @@ namespace Application
 
             //to implement pattern mediatR
             services.AddMediatR(Assembly.GetExecutingAssembly());
+
+            //to apply validations in the pipeline
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
         }
     }
 }

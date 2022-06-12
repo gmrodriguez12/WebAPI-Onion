@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Net.Mime;
+using System.Runtime.Serialization;
 using System.Net.Security;
 using FluentValidation;
 using MediatR;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Beheaviours;
 
 namespace Application
 {

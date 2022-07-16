@@ -3,7 +3,7 @@
 This project solves a CRUD of Products on Adventure Works DB applying an Onion Architecture, developed with .net6.
 
 This example includes:
-- Web API .net 6
+
 - Pipeline validations
 - Fluent Validation
 - Automapper
